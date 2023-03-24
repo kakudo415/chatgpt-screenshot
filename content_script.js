@@ -5,7 +5,9 @@ function captureChatGPT() {
     const imgData = canvas.toDataURL("image/png");
     const link = document.createElement("a");
     link.href = imgData;
-    link.download = "chatgpt-screenshot.png";
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleString().replace(/[:\s]/g, "-").replace(/[/]/g, ".");
+    link.download = `ChatGPT-${formattedDate}.png`;
     link.click();
   });
 }

@@ -1,5 +1,5 @@
 function captureChat() {
-  const chatContainer = document.querySelector('.chat-container'); // チャット入力と出力を含む要素を選択
+  const chatContainer = document.querySelector('main'); // チャット入力と出力を含む要素を選択
   if (!chatContainer) {
     alert('ChatGPT container not found.');
     return;

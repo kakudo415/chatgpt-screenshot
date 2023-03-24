@@ -1,17 +1,21 @@
-function captureChat() {
-  const chatContainer = document.querySelector('main'); // チャット入力と出力を含む要素を選択
-  if (!chatContainer) {
-    alert('ChatGPT container not found.');
-    return;
-  }
+function captureChatGPT() {
+  const chatContainer = document.querySelector("main");
 
-  html2canvas(chatContainer, { logging: false, useCORS: true }).then(canvas => {
-    const imageDataUrl = canvas.toDataURL('image/png'); // キャンバスをPNG形式で出力
-    const link = document.createElement('a');
-    link.href = imageDataUrl;
-    link.download = `chatgpt_screenshot_${Date.now()}.png`;
+  html2canvas(chatContainer).then((canvas) => {
+    const imgData = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = imgData;
+    link.download = "chatgpt-screenshot.png";
     link.click();
   });
 }
 
-captureChat();
+if (document.querySelector("main")) {
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "captureChatGPT") {
+      captureChatGPT();
+    }
+  });
+} else {
+  console.error("ChatGPT container not found.");
+}

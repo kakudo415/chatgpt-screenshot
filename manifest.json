@@ -1,22 +1,21 @@
 {
   "manifest_version": 2,
-  "name": "ChatGPT Screenshot Taker",
+  "name": "ChatGPT Screenshot",
   "version": "1.0",
-  "permissions": [
-    "activeTab"
-  ],
+  "description": "Capture ChatGPT conversation screenshots",
   "browser_action": {
     "default_icon": "icon.png",
-    "default_title": "Take ChatGPT Screenshot"
+    "default_title": "Capture ChatGPT Screenshot"
   },
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
+  "permissions": ["activeTab"],
   "content_scripts": [
     {
       "matches": ["https://chat.openai.com/chat/*"],
       "js": ["html2canvas.min.js", "content_script.js"]
     }
-  ]
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  }
 }
